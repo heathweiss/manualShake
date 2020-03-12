@@ -24,7 +24,7 @@ main = shakeArgs shakeOptions{shakeFiles="_build"} $ do
         removeFilesAfter "_build" ["//*"]
 
     "_build/run" <.> exe %> \out -> do
-        cs <- getDirectoryFiles "" ["//*.c"]
+        cs <- getDirectoryFiles "" ["c_src//*.c"]
         let os = ["_build" </> c -<.> "o" | c <- cs]
         need os
         cmd_ "gcc -o" [out] os
@@ -34,27 +34,3 @@ main = shakeArgs shakeOptions{shakeFiles="_build"} $ do
         let m = out -<.> "m"
         cmd_ "gcc -c" [c] "-o" [out] "-MMD -MF" [m]
         neededMakefileDependencies m
-{-
-main :: IO ()
-main = do
-  (options, ()) <- simpleOptions
-    $(simpleVersion Paths_manualShake.version)
-    "Header for command line arguments"
-    "Program description, also for command line arguments"
-    (Options
-       <$> switch ( long "verbose"
-                 <> short 'v'
-                 <> help "Verbose output?"
-                  )
-    )
-    empty
-  lo <- logOptionsHandle stderr (optionsVerbose options)
-  pc <- mkDefaultProcessContext
-  withLogFunc lo $ \lf ->
-    let app = App
-          { appLogFunc = lf
-          , appProcessContext = pc
-          , appOptions = options
-          }
-     in runRIO app run
--}
