@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3d7201c4ac08820d2221f57c05381b11e78a6a585329ba751a2e1dc33ed1abb7
+-- hash: 66102a02f249d092172c3031e5d64b8f18ad130d52023928ca72dcc114be312a
 
 name:           manualShake
 version:        0.1.0.0
@@ -40,6 +40,7 @@ library
       base >=4.11 && <10
     , rio >=0.1.12.0
     , shake >=0.18.5
+    , shake-language-c >=0.12.0
   default-language: Haskell2010
 
 executable manualShake-exe
@@ -55,6 +56,7 @@ executable manualShake-exe
     , optparse-simple
     , rio >=0.1.12.0
     , shake >=0.18.5
+    , shake-language-c >=0.12.0
   default-language: Haskell2010
 
 test-suite manualShake-test
@@ -72,4 +74,5 @@ test-suite manualShake-test
     , manualShake
     , rio >=0.1.12.0
     , shake >=0.18.5
+    , shake-language-c >=0.12.0
   default-language: Haskell2010
